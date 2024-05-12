@@ -52,14 +52,6 @@ const httpServer = http.createServer(app); // server var
 logger.info("Starting server....");
 
 /**
- * Static Index Page
- */
-app.get("/", (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.status(200).send("meow");
-});
-
-/**
  * * /health for healthchecks in the future
  */
 app.get("/health", validationController.healthCheck, async (req, res) => {
@@ -67,6 +59,9 @@ app.get("/health", validationController.healthCheck, async (req, res) => {
   res.status(200).send("Server Running");
 });
 
+/**
+ * * /validationTest for testing the validation middleware
+ */
 app.get("/validationTest", validationController.test, async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.status(200).send("Server Running");

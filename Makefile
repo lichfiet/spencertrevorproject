@@ -69,11 +69,11 @@ start-nd: ## Start node not in container
 # Clean Up
 clean: # Remove images, modules, and cached build layers
 	rm -rf node_modules
-	rm -rf package-lock.json
 	-docker stop ${APP_NAME}
 	-docker rm ${APP_NAME}
 	-docker image rm ${APP_NAME}:dev
 	-docker image rm ${APP_NAME}:latest
+	-docker rmi $$(docker images -f "dangling=true" -q)
 
 init: # Initailize development environment and start it
 	chmod u+x ./development/dev-init.sh
