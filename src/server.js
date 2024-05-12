@@ -27,7 +27,7 @@ logger.debug("Env Vars: " + JSON.stringify(config));
 /**
  * *Import Utilities
  */
-const { utils } = require("./utils/utilityWrapper.js"); // For s3 / sftp connections
+const { utilityWrapper } = require("./utils/utilityWrapper.js"); // For s3 / sftp connections
 logger.info("Imported Utilities");
 
 /**

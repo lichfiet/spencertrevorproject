@@ -9,6 +9,6 @@ const exampleUtil = (inputVar) => { return "meow" }
 
 
 
-module.exports = utils = {
+module.exports = utilityWrapper = {
     exampleUtil: exampleUtil()
 }
