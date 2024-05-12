@@ -28,7 +28,13 @@ logger.debug("Env Vars: " + JSON.stringify(config));
  * *Import Utilities
  */
 const { utilityWrapper } = require("./utils/utilityWrapper.js"); // For s3 / sftp connections
-logger.info("Imported Utilities");
+logger.debug("Imported Utilities");
+
+/**
+ * *Import Middlewares
+ */
+const { validationController } = require("./middlewares/requestValidation.js"); // For request validation
+logger.debug("Imported Middlewares");
 
 /**
  * * HTTPS Setup
@@ -49,13 +55,19 @@ logger.info("Starting server....");
  * Static Index Page
  */
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.status(200).send("meow");
 });
 
 /**
  * * /health for healthchecks in the future
  */
-app.get("/health", async (req, res) => {
+app.get("/health", validationController.healthCheck, async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.status(200).send("Server Running");
+});
+
+app.get("/validationTest", validationController.test, async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.status(200).send("Server Running");
 });
