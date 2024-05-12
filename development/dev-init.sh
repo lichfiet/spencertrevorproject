@@ -61,7 +61,7 @@ else
 fi
 
 # install docker images
-docker pull node:18
+docker pull node:18-alpine
 if [ $? -eq 0 ]; then
     echo -e "${BGreen}${CMark}${BBlack} Node Image Pulled. ${NC}"
 else

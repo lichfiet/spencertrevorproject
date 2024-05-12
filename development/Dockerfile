@@ -46,4 +46,4 @@ COPY --from=dev /usr/app/package.json package.json
 
 # run the app
 EXPOSE 8443/tcp
-CMD npm run prod
+CMD npm run start
